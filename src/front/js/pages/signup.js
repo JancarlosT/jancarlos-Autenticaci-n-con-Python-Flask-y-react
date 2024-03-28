@@ -3,19 +3,19 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Signup = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate()
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const handleLogin = async (email, password) => {
-		const response = await actions.login(email, password)
+	const handleSignup = async (email, password) => {
+		const response = await actions.signup(email, password)
 		if (response) {
-			navigate("/")
+			navigate("/login")
 		} else {
-			alert("ocurrio un error al hacer login!")
+			alert("ocurrio un error en el registro!")
 		}
 	}
 
@@ -24,7 +24,7 @@ export const Login = () => {
 			{store.user == null || store.user == false ?
 				<div className="container">
 					<div className="mb-3 w-50 mx-auto">
-						<h1>Login</h1>
+						<h1>Signup</h1>
 					</div>
 					<div className="mb-3 w-50 mx-auto">
 						<label for="emailInput" className="form-label">Email address</label>
@@ -35,7 +35,7 @@ export const Login = () => {
 						<input value={password} type="password" className="form-control" id="passwordInput" placeholder="*****" onChange={(e) => setPassword(e.target.value)} />
 					</div>
 					<div className="mb-3 w-50 mx-auto">
-						<button type="button" className="btn btn-primary mx-auto" onClick={() => handleLogin(email, password)}>Login</button>
+						<button type="button" className="btn btn-primary mx-auto" onClick={() => handleSignup(email, password)}>Signup</button>
 					</div>
 				</div>
 				: <h1 classNameName="text-danger">Ya has iniciado sesion</h1>}
